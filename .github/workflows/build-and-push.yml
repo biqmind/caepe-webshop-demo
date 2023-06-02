@@ -33,6 +33,9 @@ jobs:
           push: true
           tags: dsoadmin/caepe-webshop-demo:1.0
 
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Run Bash script
         run: |
           # Change directory to the location of your script
