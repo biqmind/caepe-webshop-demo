@@ -39,10 +39,10 @@ jobs:
           cd caepe-cli
 
           # Make the script executable (if needed)
-          chmod +x caepe-cli-linux-amd64
+          chmod +x caepe-cli/caepe-cli-linux-amd64
 
           #--Login
           CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli-linux-amd64/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
 
           #-- Create Deployment
-          caepe-cli-linux-amd64/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST }} --organization ${{ vars.ORG }} --scheme https --debug
+          caepe-cli/caepe-cli-linux-amd64/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST }} --organization ${{ vars.ORG }} --scheme https --debug
