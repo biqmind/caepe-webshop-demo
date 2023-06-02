@@ -32,3 +32,17 @@ jobs:
           context: .
           push: true
           tags: dsoadmin/caepe-webshop-demo:1.0
+
+      - name: Run Bash script
+        run: |
+          # Change directory to the location of your script
+          cd caepe-cli
+
+          # Make the script executable (if needed)
+          chmod +x caepe-cli-linux-amd64
+
+          #--Login
+          CAEPE_CLIENTID=${{ variable.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secret.CAEPE_CLIENTSECRET }} caepe-cli-linux-amd64/caepe-cli-linux-amd64 login --organization ${{ variable.ORG }}
+
+          #-- Create Deployment
+          caepe-cli-linux-amd64/caepe-cli-linux-amd64 deployment rollout -d ${{ variable.DEPNAME }} --hostname ${{ variable.HOST }} --organization ${{ variable.ORG }} --scheme https --debug
