@@ -34,14 +34,14 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: nginx-ingress-adam1
 spec:
   ingressClassName: nginx
   rules:
     - host:
       http:
         paths:
-          - path: /
+          - path: /adam1
             pathType: Prefix
             backend:
               service:
