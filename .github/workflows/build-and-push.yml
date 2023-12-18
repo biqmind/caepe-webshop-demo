@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - CAPE-1320
+      
 
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
