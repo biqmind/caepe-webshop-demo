@@ -45,10 +45,10 @@ jobs:
           ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST1 }} --organization ${{ vars.ORG }} --scheme https --debug
           
 
-      - name: Run Bash script
-        run: |
+      #- name: Run Bash script
+        #run: |
           #--Login
-          CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
+          #CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
 
           #-- Create Deployment
-          ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST2 }} --organization ${{ vars.ORG }} --scheme https --debug
+          #./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST2 }} --organization ${{ vars.ORG }} --scheme https --debug
