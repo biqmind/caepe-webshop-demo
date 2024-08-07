@@ -48,7 +48,7 @@ jobs:
           do
             sleep 20
             #Get deployment status
-            OUTPUT=`${AGENT_RELEASEDIRECTORY}/_caepe-cli-linux-amd64/caepe-cli-linux-amd64 deployment list --hostname $(HOST1) --organization $(ORG) --raw-output`
+            OUTPUT=`./caepe-cli/caepe-cli-linux-amd64 deployment list --hostname $(HOST1) --organization $(ORG) --raw-output`
             #Extract the result of the deployment
             echo "$OUTPUT" | jq '.[] | select(.name == "$(DEPNAME)")'
             RESULT=$(echo "$OUTPUT" | jq '.[] | select(.name == "$(DEPNAME)") | .status' | tr -d '"')
