@@ -48,10 +48,10 @@ jobs:
           do
             sleep 20
             #Get deployment status
-            OUTPUT=`./caepe-cli/caepe-cli-linux-amd64 deployment list --hostname $(HOST1) --organization $(ORG) --raw-output`
+            OUTPUT=`./caepe-cli/caepe-cli-linux-amd64 deployment list --hostname ${{ vars.HOST1 }} --organization ${{ vars.ORG }} --raw-output`
             #Extract the result of the deployment
-            echo "$OUTPUT" | jq '.[] | select(.name == "$(DEPNAME)")'
-            RESULT=$(echo "$OUTPUT" | jq '.[] | select(.name == "$(DEPNAME)") | .status' | tr -d '"')
+            echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}")'
+            RESULT=$(echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}") | .status' | tr -d '"')
             #Check the result of the deployment
             if [ $RESULT == "success" ]
             then
