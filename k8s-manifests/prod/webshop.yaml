@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: dsoadmin/caepe-webshop-demo:absplit
+          image: dsoadmin/caepe-webshop-demo:1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
