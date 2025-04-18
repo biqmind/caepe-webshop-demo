@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress-clifford
+  name: nginx-ingress-Clifford
 spec:
   ingressClassName: nginx
   rules:
