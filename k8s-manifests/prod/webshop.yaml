@@ -41,7 +41,7 @@ spec:
     - host:
       http:
         paths:
-          - path: /Clifford/
+          - path: /clifford/
             pathType: Prefix
             backend:
               service:
