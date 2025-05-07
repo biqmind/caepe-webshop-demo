@@ -65,8 +65,8 @@ jobs:
           #  (exit 1)
           #fi
 
-      #- name: Run Bash script
-        #run: |
+      - name: Run Bash script
+        run: |
           #--Login
           CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
 
