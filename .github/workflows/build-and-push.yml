@@ -44,31 +44,31 @@ jobs:
           #-- Create Deployment
           ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST1 }} --organization ${{ vars.ORG }} --scheme https --debug
           # Check for result
-          for n in {1..10}
-          do
-            sleep 20
-            #Get deployment status
-            OUTPUT=`./caepe-cli/caepe-cli-linux-amd64 deployment list --hostname ${{ vars.HOST1 }} --organization ${{ vars.ORG }} --raw-output`
-            #Extract the result of the deployment
-            echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}")'
-            RESULT=$(echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}") | .status' | tr -d '"')
-            #Check the result of the deployment
-            if [ $RESULT == "success" ]
-            then
-              break
-            fi
-          done
-          if [ $RESULT == "success" ]
-          then
-            (exit 0)
-          else
-            (exit 1)
-          fi
+          #for n in {1..10}
+          #do
+          #  sleep 20
+          #  #Get deployment status
+          #  OUTPUT=`./caepe-cli/caepe-cli-linux-amd64 deployment list --hostname ${{ vars.HOST1 }} --organization ${{ vars.ORG }} --raw-output`
+          #  #Extract the result of the deployment
+          #  echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}")'
+          #  RESULT=$(echo "$OUTPUT" | jq '.[] | select(.name == "${{ vars.DEPNAME }}") | .status' | tr -d '"')
+          #  #Check the result of the deployment
+          #  if [ $RESULT == "success" ]
+          #  then
+          #    break
+          #  fi
+          #done
+          #if [ $RESULT == "success" ]
+          #then
+          #  (exit 0)
+          #else
+          #  (exit 1)
+          #fi
 
       #- name: Run Bash script
         #run: |
           #--Login
-          #CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
+          CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --organization ${{ vars.ORG }}
 
           #-- Create Deployment
-          #./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST2 }} --organization ${{ vars.ORG }} --scheme https --debug
+          ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --hostname ${{ vars.HOST2 }} --organization ${{ vars.ORG }} --scheme https --debug
