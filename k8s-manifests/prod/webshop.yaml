@@ -18,6 +18,13 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 15m
+              memory: 100Mi
+            limits:
+              cpu: 27m
+              memory: 100Mi
 ---
 apiVersion: v1
 kind: Service
