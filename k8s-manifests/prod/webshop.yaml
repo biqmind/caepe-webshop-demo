@@ -9,7 +9,7 @@ metadata:
   name: webshop-frontend
   namespace: webshop
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: webshop-frontend
@@ -23,13 +23,6 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 15m
-            memory: 100Mi
-          limits:
-            cpu: 46m
-            memory: 100Mi
 ---
 apiVersion: v1
 kind: Service
@@ -65,13 +58,6 @@ spec:
         image: node:14
         ports:
         - containerPort: 3000
-        resources:
-          requests:
-            cpu: 15m
-            memory: 100Mi
-          limits:
-            cpu: 46m
-            memory: 100Mi
 ---
 apiVersion: v1
 kind: Service
