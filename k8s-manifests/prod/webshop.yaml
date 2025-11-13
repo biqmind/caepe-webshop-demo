@@ -1,74 +1,50 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: webshop
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webshop-frontend
-  namespace: webshop
+  name: nginx-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: webshop-frontend
+      app: nginx
   template:
     metadata:
       labels:
-        app: webshop-frontend
+        app: nginx
     spec:
       containers:
-      - name: frontend
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: dsoadmin/caepe-webshop-demo:1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: webshop-frontend-service
-  namespace: webshop
+  name: nginx-service
 spec:
   selector:
-    app: webshop-frontend
+    app: nginx
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-  type: LoadBalancer
+    - protocol: TCP
+      port: 80
+      targetPort: 80
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: webshop-backend
-  namespace: webshop
+  name: nginx-ingress-shireen
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: webshop-backend
-  template:
-    metadata:
-      labels:
-        app: webshop-backend
-    spec:
-      containers:
-      - name: backend
-        image: node:14
-        ports:
-        - containerPort: 3000
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: webshop-backend-service
-  namespace: webshop
-spec:
-  selector:
-    app: webshop-backend
-  ports:
-  - protocol: TCP
-    port: 3000
-    targetPort: 3000
-  type: ClusterIP
+  ingressClassName: nginx
+  rules:
+    - host:
+      http:
+        paths:
+          - path: /shireen/
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80
