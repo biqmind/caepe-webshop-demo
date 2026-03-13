@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-deployment-test
 spec:
   replicas: 1
   selector:
@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: nginx-service-test
 spec:
   selector:
     app: nginx
@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: nginx-ingress-test
 spec:
   ingressClassName: nginx
   rules:
