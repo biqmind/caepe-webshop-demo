@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webshop-deployment
-  annotations:
-    # This annotation-based approach is deprecated in k8s 1.34.x
-    container.apparmor.security.beta.kubernetes.io/hello: localhost/runtime-default
 spec:
   replicas: 1
   selector:
@@ -17,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webshop
-          image: dsoadmin/caepe-webshop-demo:1.0
+          image: hello:1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -51,3 +48,10 @@ spec:
                 name: webshop-service
                 port:
                   number: 80
+---
+apiVersion: flowcontrol.apiserver.k8s.io/v1beta3
+kind: PriorityLevelConfiguration
+metadata:
+  name: limit-expensive-requests
+spec:
+  type: Exempt
