@@ -2,6 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webshop-deployment
+  annotations:
+    # This annotation-based approach is deprecated in k8s 1.33.x
+    container.apparmor.security.beta.kubernetes.io/hello: localhost/runtime-default
 spec:
   replicas: 1
   selector:
