@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: webshop-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: webshop
   template:
     metadata:
       labels:
-        app: nginx
+        app: webshop
     spec:
       containers:
-        - name: nginx
+        - name: webshop
           image: dsoadmin/caepe-webshop-demo:1.0
           imagePullPolicy: Always
           ports:
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: webshop-service
 spec:
   selector:
-    app: nginx
+    app: webshop
   ports:
     - protocol: TCP
       port: 80
@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: webshop-ingress
 spec:
   ingressClassName: nginx
   rules:
@@ -45,6 +45,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: nginx-service
+                name: webshop-service
                 port:
                   number: 80
