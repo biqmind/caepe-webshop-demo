@@ -49,3 +49,40 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
+---
+apiVersion: flowcontrol.apiserver.k8s.io/v1
+kind: PriorityLevelConfiguration
+metadata:
+  name: nginx-api-priority
+spec:
+  type: Limited
+  limited:
+    nominalConcurrencyShares: 30 
+    limitResponse:
+      type: Queue
+      queuing:
+        queues: 64
+        handSize: 6
+        queueLengthLimit: 50
+---
+apiVersion: flowcontrol.apiserver.k8s.io/v1
+kind: FlowSchema
+metadata:
+  name: nginx-api-schema
+spec:
+  priorityLevelConfiguration:
+    name: nginx-api-priority
+  matchingPrecedence: 800
+  distinguisherMethod:
+    type: ByUser
+  rules:
+  - resourceRules:
+    - verbs: ["get", "list", "watch"]
+      apiGroups: ["apps"]
+      resources: ["deployments"]
+      namespaces: ["default"]
+    subjects:
+    - kind: ServiceAccount
+      serviceAccount:
+        name: default
+        namespace: default
