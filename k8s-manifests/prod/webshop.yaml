@@ -50,7 +50,7 @@ spec:
         type: Utilization
         averageUtilization: 50
 ---
-apiVersion: flowcontrol.apiserver.k8s.io/v1beta1
+apiVersion: flowcontrol.apiserver.k8s.io/v1beta3
 kind: PriorityLevelConfiguration
 metadata:
   name: nginx-api-priority
@@ -65,7 +65,7 @@ spec:
         handSize: 6
         queueLengthLimit: 50
 ---
-apiVersion: flowcontrol.apiserver.k8s.io/v1beta1
+apiVersion: flowcontrol.apiserver.k8s.io/v1beta3
 kind: FlowSchema
 metadata:
   name: nginx-api-schema
