@@ -43,12 +43,12 @@ jobs:
       - name: Run Bash script
         run: |
           #--Configure CLI Client
-          caepe-cli/caepe-cli-linux-amd64  configure edit --organization ${{ vars.ORG }} --hostname ${{ vars.HOST1 }} --auth-host ${{ vars.HOST1 }}
+          caepe-cli/caepe-cli-linux-amd64  configure edit --organization ${{ vars.ORG }} --hostname ${{ vars.HOST1 }} --auth-host ${{ vars.HOST1 }} --debug
           #--Login
-          CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login
+          CAEPE_CLIENTID=${{ vars.CAEPE_CLIENTID }} CAEPE_CLIENTSECRET=${{ secrets.CAEPE_CLIENTSECRET }} caepe-cli/caepe-cli-linux-amd64 login --debug
 
           #-- Create Deployment
-          ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }}
+          ./caepe-cli/caepe-cli-linux-amd64 deployment rollout -d ${{ vars.DEPNAME }} --debug
 
       #- name: Run Bash script
       #  run: |
