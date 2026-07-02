@@ -18,6 +18,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+        - name: spinner
+          image: busybox:1.37
+          command: ["sh", "-c", "while true; do sleep 3600; done"]
 ---
 apiVersion: v1
 kind: Service
