@@ -44,7 +44,7 @@ spec:
     - host:
       http:
         paths:
-          - path: /
+          - path: /multicontainer/
             pathType: Prefix
             backend:
               service:
