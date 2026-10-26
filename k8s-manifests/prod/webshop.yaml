@@ -41,7 +41,7 @@ spec:
     - host:
       http:
         paths:
-          - path: /adam1
+          - path: /mywebshop
             pathType: Prefix
             backend:
               service:
