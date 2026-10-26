@@ -36,15 +36,16 @@ kind: Ingress
 metadata:
   name: mywebshop-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - host:
       http:
         paths:
-          - path: /mywebshop/
-            pathType: Prefix
+          - path: /mywebshop(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: mywebshop-service
