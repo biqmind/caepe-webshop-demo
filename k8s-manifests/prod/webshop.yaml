@@ -44,7 +44,7 @@ spec:
       http:
         paths:
           - path: /mywebshop/
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: mywebshop-service
