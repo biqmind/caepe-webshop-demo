@@ -37,6 +37,7 @@ metadata:
   name: mywebshop-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
   ingressClassName: nginx
   rules:
     - host:
