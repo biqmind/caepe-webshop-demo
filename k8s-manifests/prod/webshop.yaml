@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mywebshop-deployment
+  name: mywebshop2-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mywebshop
+      app: mywebshop2
   template:
     metadata:
       labels:
-        app: mywebshop
+        app: mywebshop2
     spec:
       containers:
         - name: nginx
@@ -22,10 +22,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mywebshop-service
+  name: mywebshop2-service
 spec:
   selector:
-    app: mywebshop
+    app: mywebshop2
   ports:
     - protocol: TCP
       port: 80
@@ -34,29 +34,27 @@ spec:
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: strip-mywebshop
-  namespace: mywebshop
+  name: strip-mywebshop2
 spec:
   stripPrefix:
     prefixes:
-      - /mywebshop
+      - /mywebshop2
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mywebshop-ingress
-  namespace: mywebshop
+  name: mywebshop2-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: mywebshop-strip-mywebshop@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: mywebshop2-strip-mywebshop2@kubernetescrd
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /mywebshop
+          - path: /mywebshop2
             pathType: Prefix
             backend:
               service:
-                name: mywebshop-service
+                name: mywebsho2p-service
                 port:
                   number: 80
