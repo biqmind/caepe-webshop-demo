@@ -55,6 +55,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: mywebsho2p-service
+                name: mywebshop2-service
                 port:
                   number: 80
