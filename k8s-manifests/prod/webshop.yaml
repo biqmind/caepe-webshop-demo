@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: mywebshop-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: mywebshop
   template:
     metadata:
       labels:
-        app: nginx
+        app: mywebshop
     spec:
       containers:
         - name: nginx
@@ -25,7 +25,7 @@ metadata:
   name: mywebshop-service
 spec:
   selector:
-    app: nginx
+    app: mywebshop
   ports:
     - protocol: TCP
       port: 80
