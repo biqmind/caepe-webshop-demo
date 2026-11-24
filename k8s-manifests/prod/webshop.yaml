@@ -36,7 +36,7 @@ kind: HTTPRoute
 metadata:
   name: caepe-webshop-demo
 spec:
-  parentRefs: # NOTE: the parentRefs are cluster-setup dependent.
+  parentRefs: # NOTE: the parentRefs are cluster-setup dependent. See README.md for details.
     - name: traefik-gateway
       namespace: traefik
       sectionName: web
