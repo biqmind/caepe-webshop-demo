@@ -8,7 +8,8 @@
 
 kubectl config use-context <the context of a cluster you want to configure>
 
-kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.3/standard-install
+kubectl apply --server-side \
+  -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.3/standard-install
 
 helm repo add traefik https://traefik.github.io/charts
 helm repo update traefik
